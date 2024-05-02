@@ -1,30 +1,30 @@
-declare module "react-native-live-audio-stream" {
+declare module "react-native-live-audio-stream_dencomm" {
   export interface IAudioRecord {
-    init: (options: Options) => void
-    start: () => void
-    stop: () => Promise<string>
-    on: (event: "data", callback: (data: string) => void) => void
+    init: (options: Options) => void;
+    start: () => void;
+    stop: () => Promise<string>;
+    on: (event: "data", callback: (data: string) => void) => void;
   }
 
   export interface Options {
-    sampleRate: number
+    sampleRate: number;
     /**
      * - `1 | 2`
      */
-    channels: number
+    channels: number;
     /**
      * - `8 | 16`
      */
-    bitsPerSample: number
+    bitsPerSample: number;
     /**
      * - `6`
      */
-    audioSource?: number
-    wavFile: string
-    bufferSize?: number
+    audioSource?: number;
+    wavFile: string;
+    bufferSize?: number;
   }
 
-  const AudioRecord: IAudioRecord
+  const AudioRecord: IAudioRecord;
 
   export default AudioRecord;
 }
