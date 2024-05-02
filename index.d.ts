@@ -2,7 +2,7 @@ declare module "react-native-live-audio-stream_dencomm" {
   export interface IAudioRecord {
     init: (options: Options) => void;
     start: () => void;
-    stop: () => Promise<string>;
+    stop: () => Promise<boolean>;
     on: (event: "data", callback: (data: string) => void) => void;
   }
 
@@ -20,7 +20,6 @@ declare module "react-native-live-audio-stream_dencomm" {
      * - `6`
      */
     audioSource?: number;
-    wavFile: string;
     bufferSize?: number;
   }
 
