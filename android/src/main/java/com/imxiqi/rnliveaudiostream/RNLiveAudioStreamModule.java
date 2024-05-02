@@ -13,6 +13,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
+import java.nio.ByteBuffer;
 import java.lang.Math;
 
 public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
@@ -74,8 +75,7 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
             bufferSize = Math.max(bufferSize, options.getInt("bufferSize"));
         }
 
-        int recordingBufferSize = bufferSize * 3;
-        recorder = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, recordingBufferSize);
+        recorder = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSize);
     }
 
     @ReactMethod
@@ -89,18 +89,26 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
                     int bytesRead;
                     int count = 0;
                     String base64Data;
-                    byte[] buffer = new byte[bufferSize];
+
+                    ByteBuffer buffer = ByteBuffer.allocateDirect(bufferSize);
 
                     while (isRecording) {
-                        bytesRead = recorder.read(buffer, 0, buffer.length);
+                        buffer.clear();
+                        bytesRead = recorder.read(buffer, bufferSize);
 
-                        // skip first 2 buffers to eliminate "click sound"
-                        if (bytesRead > 0 && ++count > 2) {
-                            base64Data = Base64.encodeToString(buffer, Base64.NO_WRAP);
+                        if (bytesRead > 0) {
+
+                            byte[] audioData = new byte[bytesRead];
+                            buffer.rewind();
+                            buffer.get(audioData, 0, bytesRead);
+                            base64Data = Base64.encodeToString(audioData, Base64.NO_WRAP);
+
                             eventEmitter.emit("data", base64Data);
                         }
                     }
+
                     recorder.stop();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
