@@ -1,6 +1,6 @@
 {
-  "name": "react-native-live-audio-stream",
-  "version": "1.1.1",
+  "name": "react-native-live-audio-stream_dencomm",
+  "version": "1.1.2",
   "description": "Get live audio stream data for React Native",
   "license": "MIT",
   "keywords": [
@@ -12,16 +12,15 @@
     "voice"
   ],
   "main": "index.js",
-  "homepage": "https://github.com/xiqi/react-native-live-audio-stream",
+  "homepage": "https://github.com/max-dencomm/react-native-live-audio-stream",
   "bugs": {
-    "url": "https://github.com/xiqi/react-native-live-audio-stream/issues",
-    "email": "me@imxiqi.com"
+    "url": "https://github.com/max-dencomm/react-native-live-audio-stream/issues",
+    "email": "max@dencomm.ai"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xiqi/react-native-live-audio-stream.git"
+    "url": "https://github.com/max-dencomm/react-native-live-audio-stream.git"
   },
-  "author": "Qi Xi <me@imxiqi.com> (https://www.imxiqi.com/)",
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
@@ -29,5 +28,6 @@
     "prettier": "^1.12.0"
   },
   "dependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
