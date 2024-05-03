@@ -107,8 +107,6 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
                         }
                     }
 
-                    recorder.stop();
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -122,8 +120,6 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
     public void stop(Promise promise) {
         isRecording = false;
         recorder.stop();
-        recorder.release();
-        recorder = null;
         promise.resolve(true);
     }
 }
