@@ -94,7 +94,7 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
 
                     while (isRecording) {
                         buffer.clear();
-                        bytesRead = recorder.read(buffer, bufferSize);
+                        bytesRead = recorder.read(buffer, bufferSize, AudioRecord.READ_BLOCKING);
 
                         if (bytesRead > 0) {
 
