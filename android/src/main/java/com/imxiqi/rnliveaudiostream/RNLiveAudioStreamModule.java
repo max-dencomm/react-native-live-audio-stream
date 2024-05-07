@@ -118,8 +118,18 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void stop(Promise promise) {
+      if (recorder != null && isRecording) {
         isRecording = false;
         recorder.stop();
         promise.resolve(true);
+      }
+      promise.resolve(false);
+    }
+
+    @ReactMethod
+    public void destroy() {
+      if (recorder != null) {
+        recorder.release();
+      }
     }
 }

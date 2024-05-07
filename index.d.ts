@@ -3,6 +3,7 @@ declare module "react-native-live-audio-stream_dencomm" {
     init: (options: Options) => void;
     start: () => void;
     stop: () => Promise<boolean>;
+    destroy: () => void;
     on: (event: "data", callback: (data: string) => void) => void;
   }
 
